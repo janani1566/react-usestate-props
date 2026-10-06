@@ -1,100 +1,36 @@
+import React from "react";
 import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function Student({ name, email, message }) {
+function Child({ userName }) {
   return (
-    <div className="mt-4">
-      <h2>Student Details</h2>
-
-      <p>Student Name: {name}</p>
-      <p>Email: {email}</p>
-      <p>Message: {message}</p>
+    <div className="container mt-5">
+    <h1>Hello, {userName}!</h1>
     </div>
   );
 }
 
 function App() {
-  const [studentName, setStudentName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
-  function handleNameChange(event) {
-    setStudentName(event.target.value);
-  }
-
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-  }
-
-  function handleMessageChange(event) {
-    setMessage(event.target.value);
-  }
+  const [userName, setUserName] = useState("");
 
   return (
-    <div className="container mt-4">
-
-      <h1>Student Details</h1>
-
-      
-      <div className="mb-3">
-        <label className="form-label">
-          Student Name
-        </label>
-
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Enter student name"
-          value={studentName}
-          onChange={handleNameChange}
-        />
-      </div>
-
-     
-      <div className="mb-3">
-        <label
-          htmlFor="email"
-          className="form-label"
-        >
-          Email address
-        </label>
-
-        <input
-          type="email"
-          className="form-control"
-          id="email"
-          placeholder="name@example.com"
-          value={email}
-          onChange={handleEmailChange}
-        />
-      </div>
-
-      
-      <div className="mb-3">
-        <label
-          htmlFor="message"
-          className="form-label"
-        >
-          Message
-        </label>
-
-        <textarea
-          className="form-control"
-          id="message"
-          rows="3"
-          value={message}
-          onChange={handleMessageChange}
-        ></textarea>
-      </div>
-
-      
-      <Student
-        name={studentName}
-        email={email}
-        message={message}
+    <>
+      <label className="form-label">
+              Name
+      </label><input
+        type="text"
+        className="form-control"
+        placeholder="Enter your Name"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
       />
 
-    </div>
+      <button className="btn btn-primary" onClick={() => setUserName("")}>
+        Clear
+      </button>
+
+      <Child userName={userName} />
+    </>
   );
 }
 
